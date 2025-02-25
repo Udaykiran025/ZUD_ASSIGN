@@ -1,0 +1,58 @@
+@Metadata.layer: #CORE
+
+
+@UI: {
+    headerInfo: {
+        typeName: 'Student',
+        typeNamePlural: 'Student Details',
+        title: {  type: #STANDARD, value: 'StudentId'  } },
+    presentationVariant: [{ sortOrder: [{ by: 'StudentId', direction:
+    #ASC }] }]
+
+}
+@Search.searchable: true
+annotate view ZP_UK_STUDENT with
+{
+
+
+
+  @UI.facet: [{ id: 'student',
+                     purpose: #STANDARD,
+                     type: #IDENTIFICATION_REFERENCE,
+                     position: 10,
+                     label: 'Student Details'},
+                          { id: 'marks',
+                          purpose: #STANDARD,
+                          type: #LINEITEM_REFERENCE,
+                          position: 20,
+                          label: 'Marks Details',
+                          targetElement: '_marks'
+                         }
+                        ]
+  @UI.lineItem: [{ position: 10 , label: 'Student ID'}]
+  @UI.identification: [{ position: 10, label: 'Student ID' }]
+  @UI.selectionField: [{ position: 10 }]
+  @EndUserText.label: 'Student ID'
+  @Search.defaultSearchElement: true
+  StudentId;
+  @UI.lineItem: [{ position: 20 , label: 'Student Name'}]
+  @UI.identification: [{ position: 20, label: 'Student Name' }]
+  StudentName;
+  @UI.lineItem: [{ position: 30 , label: 'Age'}]
+  @UI.identification: [{ position: 30, label: 'Age' }]
+  Age;
+  @UI.lineItem: [{ position: 40 , label: 'Class'}]
+  @UI.identification: [{ position: 40, label: 'Class' }]
+  @UI.selectionField: [{ position: 20 }]
+  @EndUserText.label: 'Class'
+  @Search.defaultSearchElement: true
+  Class;
+  @UI.lineItem: [{ position: 50 , label: 'Section'}]
+  @UI.identification: [{ position: 50, label: 'Section' }]
+  @Search.defaultSearchElement: true
+  ClassSection;
+  @UI.lineItem: [{ position: 60 , label: 'Avg Marks'}]
+  @UI.identification: [{ position: 60, label: 'Avg Marks' }]
+  AvgMarks;
+
+}

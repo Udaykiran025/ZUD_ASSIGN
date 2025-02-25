@@ -1,0 +1,57 @@
+managed implementation in class zbp_i_uk_student unique;
+strict ( 2 );
+
+define behavior for ZI_UK_STUDENT //alias <alias_name>
+persistent table zuk_student
+lock master
+authorization master ( instance )
+//etag master <field_name>
+early numbering
+{
+  create;
+  update;
+  delete;
+  field ( mandatory : create ) StudentId;
+  field ( readonly : update ) StudentId;
+//field ( readonly ) StudentId;
+
+  association _marks { create; }
+
+  mapping for zuk_student
+  {
+
+   StudentId = student_id;
+   StudentName = student_name;
+   Age = age;
+   Class = class;
+   ClassSection = class_section;
+   AvgMarks = avg_marks;
+
+  }
+}
+
+define behavior for ZI_UK_MARKS //alias <alias_name>
+persistent table zuk_marks
+lock dependent by _student
+authorization dependent by _student
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) StudentId;
+  field ( mandatory : create ) AssessmentId;
+  field ( mandatory : create ) SubjectId;
+
+  association _student;
+
+
+   mapping for zuk_marks
+  {
+
+   StudentId = student_id;
+   AssessmentId = assessment_id;
+   SubjectId = subject_id;
+   MarksObtained =marks_obtained;
+
+  }
+}

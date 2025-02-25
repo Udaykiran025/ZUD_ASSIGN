@@ -1,0 +1,5 @@
+@EndUserText.label: 'service definitin for student details'
+define service ZSD_UK_STUDENT {
+  expose ZP_UK_STUDENT;
+  expose ZP_UK_MARKS1;
+}

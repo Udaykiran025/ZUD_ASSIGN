@@ -1,0 +1,47 @@
+@Metadata.layer: #CORE
+
+@UI: {
+    headerInfo: {
+        typeName: 'Marks',
+        typeNamePlural: 'Marks Details',
+        title: {  type: #STANDARD, value: 'SubjectId'  } },
+    presentationVariant: [{ sortOrder: [{ by: 'StudentId', direction:
+    #ASC }] }]
+//#IDENTIFICATION_REFERENCE
+}
+@Search.searchable: true
+annotate view ZP_UK_MARKS1 with
+{
+  @UI.facet: [{ id: 'Marks',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 position: 10,
+                 label: 'Marks Details' }]
+
+  @UI.lineItem: [{ position: 10, label: 'Student ID' }]
+  @UI.identification: [{ position: 10, label: 'Student ID' }]
+  @Search.defaultSearchElement: true
+  StudentId;
+  @UI.lineItem: [{ position: 20, label: 'Assessment ID' }]
+  @UI.identification: [{ position: 20, label: 'Assessment ID' }]
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [{ entity: {
+         name: 'ZI_UK_ASSESSMENT',
+         element: 'AssessmentId'
+     } }]
+
+  AssessmentId;
+  @UI.lineItem: [{ position: 30, label: 'Subject ID' }]
+  @UI.identification: [{ position: 30, label: 'Subject ID' }]
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [{ entity: {
+      name: 'ZI_UK_SUBJECTS',
+      element: 'SubjectId'
+  } }]
+  SubjectId;
+  @UI.lineItem: [{ position: 40, label: 'Marks Obtained' }]
+  @UI.identification: [{ position: 40, label: 'Marks Obtained' }]
+  MarksObtained;
+
+
+}
